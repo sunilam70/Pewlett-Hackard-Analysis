@@ -1,3 +1,4 @@
+-- Deliverable 1
 SELECT e.first_name, e.last_name, e.emp_no, ti.title
 INTO updated_retirement_info
 FROM employees AS e
@@ -30,5 +31,25 @@ FROM updated_retirement_info_with_titles
 GROUP By title;
 
 SELECT * FROM retiring_titles;
+
+-- Deliverable 2
+SELECT e.emp_no, e.first_name, e.last_name, e.birth_date, de.from_date, de.to_date
+INTO mentorship_info
+FROM employees AS e
+JOIN department_employees AS de
+ON (e.emp_no=de.emp_no)
+WHERE (birth_date BETWEEN '1965-01-01' AND '1965-12-31')
+;
+
+SELECT DISTINCT ON (me.emp_no)me.emp_no, me.first_name, me.last_name, me.birth_date, me.from_date, me.to_date, ti.title
+INTO mentorship_info_with_title
+FROM mentorship_info AS me
+JOIN title AS ti
+ON (me.emp_no=ti.emp_no)
+WHERE (birth_date BETWEEN '1965-01-01' AND '1965-12-31')
+;
+
+
+
 
 
